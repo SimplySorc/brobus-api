@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: brobus_dev
+  host: localhost
+
+test:
+  <<: *default
+  database: borbus_test<%= ENV['TEST_ENV_NUMBER'] %>
+
+production:
+  <<: *default
+  url:      <%= ENV['DATABASE_URL'] %>
+
